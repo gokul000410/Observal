@@ -34,6 +34,7 @@
 * [observal doctor](cli/doctor.md)
 * [observal profile](cli/profile.md)
 * [observal self](cli/self.md)
+* [observal prompt](cli/prompt.md)
 
 ## Self-Hosting
 

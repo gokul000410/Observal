@@ -16,6 +16,7 @@ Complete reference for the `observal` CLI. Every subcommand has its own page —
 | [`observal auth`](auth.md) | Authentication and account management |
 | [`observal config`](config.md) | Local CLI configuration, aliases |
 | [`observal scan`](scan.md) | Discover what's installed across your IDEs (read-only) |
+| [`observal skill`](skill.md) | Create, submit, manage, and install skills |
 | [`observal pull`](pull.md) | Install a published agent into an IDE |
 | [`observal registry`](registry.md) | Publish and manage components (MCP / skill / hook / prompt / sandbox) |
 | [`observal agent`](agent.md) | Author and publish agents |

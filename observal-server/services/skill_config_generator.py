@@ -8,6 +8,8 @@ from __future__ import annotations
 
 import re
 
+from loguru import logger
+
 from schemas.ide_registry import IDE_REGISTRY
 from services.shared.utils import sanitize_name as _sanitize_name
 
@@ -19,6 +21,7 @@ def _short_description(desc: str, max_len: int = 200) -> str:
     back to the first sentence (up to first '.'). Strips leading '# ' markdown
     heading markers.
     """
+    logger.debug("_short_description: desc={}, max_len={}", desc, max_len)
     if not desc:
         return ""
     first_line = desc.split("\n", 1)[0].strip()
@@ -37,6 +40,7 @@ def _generate_skill_file(skill_listing, ide: str, scope: str = "project") -> dic
     Returns None for monolithic IDEs (gemini, codex, copilot) that inline
     skills into their rules markdown.
     """
+    logger.debug("_generate_skill_file: skill={}, ide={}, scope={}", skill_listing.name, ide, scope)
     ide_key = ide.replace("_", "-")
     spec = IDE_REGISTRY.get(ide_key, {})
     skill_paths = spec.get("skill_file")
@@ -76,6 +80,7 @@ def generate_skill_config(
     scope: str = "project",
 ) -> dict:
     """Generate config snippet for skill install: telemetry hooks + skill file."""
+    logger.debug("generate_skill_config: skill={}, ide={}", skill_listing.name, ide)
     skill_id = str(skill_listing.id)
     skill_name = str(skill_listing.name)
 

@@ -240,7 +240,7 @@ async function request<T = unknown>(
 		}
 
 		const text = await response.text().catch(() => response.statusText);
-		let detail = text;
+		let detail = "Unable to reach the server. Please try again later.";
 		try {
 			const parsed = JSON.parse(text);
 			if (parsed.detail) {
@@ -263,7 +263,8 @@ async function request<T = unknown>(
 						: JSON.stringify(parsed.error);
 			}
 		} catch {
-			// not JSON, use raw text
+			// Non-JSON response (e.g. nginx 502 html page)
+			detail = "Unable to reach the server. Please try again later.";
 		}
 		const err = new Error(detail);
 		(err as Error & { status: number }).status = response.status;
